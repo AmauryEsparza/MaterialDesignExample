@@ -18,4 +18,12 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         />
+
+    <ImageView
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:id="@+id/image_view"
+        android:src="@drawable/ic_launcher"
+        android:layout_gravity="right"
+        android:elevation="1dp"/>
 </LinearLayout>

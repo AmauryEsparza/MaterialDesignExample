@@ -5,4 +5,5 @@
     <color name="status_color">#01579B</color>
     <color name="navigation_bar_color">#000000</color>
     <color name="background_color">#FFFFFF</color>
+    <color name="text_view_repo_title">#BBFFFFFF</color>
 </resources>
