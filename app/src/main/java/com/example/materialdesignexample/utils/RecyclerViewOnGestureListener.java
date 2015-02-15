@@ -14,6 +14,7 @@ import com.example.materialdesignexample.fragments.RepositoriesListFragment;
  */
 
 public class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestureListener {
+
     @Override
     public boolean onSingleTapConfirmed(MotionEvent e) {
         RepositoriesListFragment.tapConfirmed();

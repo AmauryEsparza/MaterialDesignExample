@@ -13,5 +13,11 @@
         <item name="android:navigationBarColor">@color/navigation_bar_color</item>
         <!--   status bar text color -->
         <item name="android:textColorPrimary">@color/text_navigation_color</item>
+
+        <!-- specify shared element transitions -->
+        <item name="android:windowSharedElementEnterTransition">
+            @transition/change_item_transform</item>
+        <item name="android:windowSharedElementExitTransition">
+            @transition/change_item_transform</item>
     </style>
 </resources>

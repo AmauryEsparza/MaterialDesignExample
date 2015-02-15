@@ -25,7 +25,7 @@ public class RecyclerViewRepoAdapter extends RecyclerView.Adapter<RecyclerViewRe
         public ListItemViewHolder(View itemView) {
             super(itemView);
             label = (TextView) itemView.findViewById(R.id.info_text);
-            //description = (TextView) itemView.findViewById(R.id.tview_description_repo);
+            description = (TextView) itemView.findViewById(R.id.description_text);
         }
     }
 
@@ -53,11 +53,11 @@ public class RecyclerViewRepoAdapter extends RecyclerView.Adapter<RecyclerViewRe
         Repos repo = reposList.get(position);
         //Replace the contents of the view with that element
         holder.label.setText(repo.getName());
-        /*if(repo.getDescription().equals("")){
+        if(repo.getDescription().equals("")){
             holder.description.setText("No repo description available");
         }else{
             holder.description.setText(repo.getDescription());
-        }*/
+        }
     }
 
     //Invoked by the LayoutManager
