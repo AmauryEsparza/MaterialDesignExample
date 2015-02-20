@@ -1,10 +1,8 @@
 package com.example.materialdesignexample.controllers;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.materialdesignexample.controllers.communicators.GithubService;
-import com.example.materialdesignexample.fragments.RepositoriesListFragment;
 import com.example.materialdesignexample.interfaces.IBaseCallbackResponse;
 import com.example.materialdesignexample.models.Repos;
 
@@ -47,7 +45,7 @@ public class RepositoriesController{
         apiService.listRepos(username, new Callback<List<Repos>>() {
             @Override
             public void success(List<Repos> reposList, Response response) {
-                Log.d("Retrofit List<Repo> request", "Success");
+                Log.d("Retrofit List<Repos> request", "Success");
                 requesterClass.responseListCallback(reposList);
             }
 

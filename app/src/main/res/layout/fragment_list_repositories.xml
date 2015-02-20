@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_repositories"
+        android:id="@+id/recycler_view_list_repositories"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
@@ -26,6 +26,5 @@
         android:elevation="1dp"
         />
     -->
-
 
 </RelativeLayout>

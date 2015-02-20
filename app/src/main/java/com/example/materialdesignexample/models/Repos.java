@@ -1,9 +1,11 @@
 package com.example.materialdesignexample.models;
 
+import java.io.Serializable;
+
 /**
  * Created by Amaury Esparza on 03/02/2015.
  */
-public class Repos {
+public class Repos implements Serializable{
 
     private int id;
     private String name;

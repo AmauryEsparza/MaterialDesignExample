@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <!-- A CardView that contains a TextView -->
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view_repos"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="450dip"
+        android:layout_margin="7dip"
+        android:layout_marginStart="5dip"
+        card_view:cardCornerRadius="4dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+               <RelativeLayout
+                    android:id="@+id/relative_image"
+                    android:layout_width="fill_parent"
+                    android:layout_height="300dip"
+                    android:background="@drawable/landscape">
+                   <TextView
+                       android:id="@+id/info_text"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_alignParentBottom="true"
+                       android:textSize="40sp"
+                       android:textColorHighlight="#FFFFFF"
+                       android:background="@color/text_view_repo_title"
+                       android:transitionName="info_text"
+                   />
+               </RelativeLayout>
+               <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent">
+                    <TextView
+                        android:id="@+id/description_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dip"
+                        android:textSize="20sp"
+                        android:transitionName="description_text"/>
+               </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

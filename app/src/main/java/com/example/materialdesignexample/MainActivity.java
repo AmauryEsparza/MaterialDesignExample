@@ -14,6 +14,7 @@ import android.view.Window;
 import android.widget.Button;
 
 import com.example.materialdesignexample.activities.RepositoriesActivity;
+import com.example.materialdesignexample.activities.RepositoriesListActivity;
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -61,7 +62,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         //getWindow().setExitTransition(new Fade());
         getWindow().setExitTransition(new Slide());
         //getWindow().setExitTransition(new Explode());
-        Intent intent = new Intent(this, RepositoriesActivity.class);
+        Intent intent = new Intent(this, RepositoriesListActivity.class);
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 }

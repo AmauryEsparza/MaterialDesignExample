@@ -18,10 +18,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".OtherActivity"></activity>
-        <activity android:name=".CardsActivity"></activity>
+        <activity android:name=".activities.RepositoriesListActivity"></activity>
         <activity android:name=".ClipViewsActivity"></activity>
         <activity android:name=".RecyclerViewActivity"></activity>
         <activity android:name=".activities.RepositoriesActivity"></activity>
+        <activity android:name=".activities.DetailsRepositoriesActivity"></activity>
+        <activity android:name=".activities.RepositoryDetailsActivity"></activity>
 
     </application>
 
