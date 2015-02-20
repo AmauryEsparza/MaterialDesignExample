@@ -18,30 +18,30 @@ import com.example.materialdesignexample.interfaces.IBaseCallbackResponse;
 import com.example.materialdesignexample.interfaces.IBaseFragmentCommunicator;
 import com.example.materialdesignexample.interfaces.IBaseTouchConfirmed;
 import com.example.materialdesignexample.models.Repos;
-import com.example.materialdesignexample.utils.DividerItemDecoration;
 import com.example.materialdesignexample.utils.RecyclerViewOnGestureListener;
-import com.example.materialdesignexample.utils.RecyclerViewRepoListAdapter;
+import com.example.materialdesignexample.utils.RecyclerViewRepoAdapter;
 
 import java.util.List;
 
 /**
- * Created by Amaury Esparza on 06/02/2015.
+ * Created by Amaury Esparza on 15/02/2015.
  */
-public class RepositoriesListFragment extends Fragment implements IBaseCallbackResponse<Repos>, RecyclerView.OnItemTouchListener, IBaseTouchConfirmed{
+public class RepositoriesCardsFragment extends Fragment implements IBaseCallbackResponse<Repos>, RecyclerView.OnItemTouchListener, IBaseTouchConfirmed{
 
     private Repos repos;
     private List<Repos> reposList;
     private RecyclerView recyclerView;
     private GestureDetector gestureDetector;
     private LinearLayoutManager layoutManager;
-    private IBaseFragmentCommunicator fragmentCommunicator;
+    private static IBaseFragmentCommunicator fragmentCommunicator;
+    public static View sharedView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        //Inflate the layout with the RecyclerView
-        View v = inflater.inflate(R.layout.fragment_list_repositories, container, false);
+        //Inflate the layout
+        View v = inflater.inflate(R.layout.fragment_repositories, container, false);
         //Reference to the Recycles View
-        recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_list_repositories);
+        recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_repositories);
         return v;
     }
 
@@ -72,11 +72,11 @@ public class RepositoriesListFragment extends Fragment implements IBaseCallbackR
         Log.d("RepositoriesListFragment", "responseCallback");
         if(reposList != null){
             this.reposList = reposList;
-            RecyclerViewRepoListAdapter aItems = new RecyclerViewRepoListAdapter(this.reposList);
+            RecyclerViewRepoAdapter aItems = new RecyclerViewRepoAdapter(this.reposList);
             recyclerView.setAdapter(aItems);
             //Item Decoration
-            RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity().getApplicationContext());
-            recyclerView.addItemDecoration(itemDecoration);
+            //RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity().getApplicationContext());
+            //recyclerView.addItemDecoration(itemDecoration);
             recyclerView.addOnItemTouchListener(this);
             gestureDetector = new GestureDetector(getActivity().getApplicationContext(), new RecyclerViewOnGestureListener(this));
         }
@@ -93,6 +93,8 @@ public class RepositoriesListFragment extends Fragment implements IBaseCallbackR
     //RecyclerView onTouchItemListener
     @Override
     public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+        //Get the shared elements for start the activity
+        sharedView = rv;
         //Register the gesture for verify what kind of touch happen
         gestureDetector.onTouchEvent(e);
         return false;
@@ -101,9 +103,7 @@ public class RepositoriesListFragment extends Fragment implements IBaseCallbackR
     //When the GestureDetector class confirm was a singleTap
     @Override
     public void singleTapConfirmed() {
-        //Activity callback with the sharedElements for the next activity
-
-        //------------Someway need to get the position on the element was clicked------------------
-        fragmentCommunicator.communicatorFromFragment(reposList.get(0));
+        fragmentCommunicator.commonSharedElements(sharedView);
     }
 }
+

@@ -3,12 +3,10 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/description_text"
+    <fragment
+        android:id="@+id/fragment_details"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:transitionName="description_text"
-        android:textSize="32sp"
-        android:background="@color/status_color"/>
-
+        android:layout_height="match_parent"
+        android:name="com.example.materialdesignexample.fragments.RepositoriesDetailsFragment"
+    />
 </LinearLayout>

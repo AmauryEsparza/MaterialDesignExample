@@ -4,45 +4,46 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.transition.ChangeTransform;
+import android.transition.ChangeBounds;
 import android.transition.Explode;
-import android.transition.Transition;
 import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.materialdesignexample.R;
 import com.example.materialdesignexample.interfaces.IBaseFragmentCommunicator;
+import com.example.materialdesignexample.models.Repos;
 
 /**
  * Created by Amaury Esparza on 07/02/2015.
  */
-public class RepositoriesActivity extends Activity implements IBaseFragmentCommunicator{
+public class RepositoriesActivity extends Activity implements IBaseFragmentCommunicator<Repos>{
 
     @Override
     public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        //Animation permission
-        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-        //Set transitions
+        getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
         getWindow().setEnterTransition(new Explode());
+        getWindow().setSharedElementExitTransition(new ChangeBounds());
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repositories);
     }
 
     @Override
-    public void communicatorFragment(){
+    public void communicatorFromFragment(Repos repo){
 
     }
 
     @Override
-    public void commonSharedElements(View[] sharedElements){
-        if(sharedElements.length >= 1) {
+    public void commonSharedElements(View sharedView){
+        if(sharedView != null) {
             Toast.makeText(this, "Common Shared Elements Received", Toast.LENGTH_LONG).show();
-            Transition elementTransition = new ChangeTransform();
-            getWindow().setSharedElementExitTransition(elementTransition);
             Intent intent = new Intent(this, DetailsRepositoriesActivity.class);
-            View titleView = sharedElements[0];
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, titleView, "title");
+            TextView view_description = (TextView) sharedView.findViewById(R.id.description_text);
+            //Shared elements
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this,
+                    view_description, "description_text"
+                    );
             startActivity(intent, options.toBundle());
         }
     }

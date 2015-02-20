@@ -6,6 +6,6 @@
     <fragment
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:name="com.example.materialdesignexample.fragments.RepositoriesListFragment"
+        android:name="com.example.materialdesignexample.fragments.RepositoriesCardsFragment"
         android:id="@+id/fragment" />
 </LinearLayout>
