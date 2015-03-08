@@ -35,7 +35,7 @@ public class RepositoriesActivity extends Activity implements IBaseFragmentCommu
     }
 
     @Override
-    public void commonSharedElements(View sharedView){
+    public void commonSharedElements(View sharedView, Repos repo){
         if(sharedView != null) {
             Toast.makeText(this, "Common Shared Elements Received", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, DetailsRepositoriesActivity.class);

@@ -2,6 +2,7 @@ package com.example.materialdesignexample.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.materialdesignexample.R;
-import com.example.materialdesignexample.interfaces.IActivityCommunicator;
 import com.example.materialdesignexample.models.Repos;
 
 /**
@@ -17,14 +17,19 @@ import com.example.materialdesignexample.models.Repos;
  */
 public class RepositoriesDetailsFragment extends Fragment {
 
-    IActivityCommunicator activityCommunicator;
-    TextView textTitle;
-    TextView textDescription;
-    TextView textLanguage;
+    private TextView textTitle;
+    private TextView textDescription;
+    private TextView textLanguage;
+    private Repos repo;
+    private String title, description;
 
     @Override
     public void onAttach(Activity activity){
-        activityCommunicator = (IActivityCommunicator) activity;
+        //Get the extras from parent Activity
+        Intent intent = activity.getIntent();
+        repo = (Repos) intent.getSerializableExtra("repo");
+        title = intent.getStringExtra("title");
+        description= intent.getStringExtra("description");
         super.onAttach(activity);
     }
 
@@ -40,11 +45,10 @@ public class RepositoriesDetailsFragment extends Fragment {
         textTitle = (TextView) getActivity().findViewById(R.id.textTitle);
         textDescription = (TextView) getActivity().findViewById(R.id.textDescription);
         textLanguage = (TextView) getActivity().findViewById(R.id.textLanguage);
-        //Get the Model from parent activity
-        Repos repo = (Repos) activityCommunicator.getDataFromActivity();
-        textTitle.setText(repo.getName());
-        textDescription.setText(repo.getDescription());
-        textLanguage.setText(repo.getLanguage());
+        //textTitle.setText(repo.getName());
+        //textDescription.setText(repo.getDescription());
+        textTitle.setText(title);
+        textDescription.setText(description);
 
         //The fragment communicator LOOKUP because im not sure it works
         //activityCommunicator.communicatorFromFragment(new Repos());

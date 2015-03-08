@@ -7,5 +7,5 @@ import android.view.View;
  */
 public interface IBaseFragmentCommunicator <T>{
     public void communicatorFromFragment(T values);
-    public void commonSharedElements(View sharedView);
+    public void commonSharedElements(View sharedView, T values);
 }

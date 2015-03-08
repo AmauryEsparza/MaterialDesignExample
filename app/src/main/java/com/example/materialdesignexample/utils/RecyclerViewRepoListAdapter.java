@@ -1,6 +1,7 @@
 package com.example.materialdesignexample.utils;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,10 @@ import java.util.List;
 /**
  * Created by Amaury Esparza on 15/02/2015.
  */
-public class RecyclerViewRepoListAdapter extends RecyclerView.Adapter<RecyclerViewRepoListAdapter.ListItemViewHolder> {
+public class RecyclerViewRepoListAdapter extends RecyclerView.Adapter<RecyclerViewRepoListAdapter.ListItemViewHolder>{
 
+    //Reference to the listener
+    private View.OnClickListener fragmentListener;
     //Holder class for reference the view components
     public final static class ListItemViewHolder extends RecyclerView.ViewHolder {
         TextView label;
@@ -29,9 +32,10 @@ public class RecyclerViewRepoListAdapter extends RecyclerView.Adapter<RecyclerVi
     }
 
     private List<Repos> reposList;
-    public RecyclerViewRepoListAdapter(List<Repos> repoList){
+    public RecyclerViewRepoListAdapter(View.OnClickListener fragmentListener, List<Repos> repoList){
         if (repoList != null){
             this.reposList = repoList;
+            this.fragmentListener = fragmentListener;
         }
     }
 
@@ -40,6 +44,8 @@ public class RecyclerViewRepoListAdapter extends RecyclerView.Adapter<RecyclerVi
     public ListItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //Inflate the corresponding layout
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_repositories, parent, false);
+        //OnClickListener
+        itemView.setOnClickListener(fragmentListener);
         //Here modify the view like margins, paddings, view size and layout parameters
         //return the ViewHolder
         return new ListItemViewHolder(itemView);

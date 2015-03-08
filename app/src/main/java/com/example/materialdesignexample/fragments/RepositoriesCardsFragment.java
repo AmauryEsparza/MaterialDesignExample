@@ -102,8 +102,9 @@ public class RepositoriesCardsFragment extends Fragment implements IBaseCallback
 
     //When the GestureDetector class confirm was a singleTap
     @Override
-    public void singleTapConfirmed() {
-        fragmentCommunicator.commonSharedElements(sharedView);
+    public void doubleTapConfirmed() {
+        //Activity callback with the sharedElements for the next activity
+        Log.d("RepositoriesCardsFragment", "doubleTapConfirmed");
     }
 }
 

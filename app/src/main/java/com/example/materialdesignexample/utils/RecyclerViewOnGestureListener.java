@@ -4,8 +4,6 @@ import android.app.Fragment;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
-import com.example.materialdesignexample.fragments.RepositoriesListFragment;
-import com.example.materialdesignexample.interfaces.IBaseFragmentCommunicator;
 import com.example.materialdesignexample.interfaces.IBaseTouchConfirmed;
 
 /**
@@ -24,10 +22,10 @@ public class RecyclerViewOnGestureListener extends GestureDetector.SimpleOnGestu
         this.responseFragment = (IBaseTouchConfirmed) responseFragment;
     }
 
+
     @Override
-    public boolean onSingleTapConfirmed(MotionEvent e) {
-        //Callback method if SingleTapConfirmed
-        responseFragment.singleTapConfirmed();
-        return super.onSingleTapConfirmed(e);
+    public boolean onDoubleTap(MotionEvent e){
+        responseFragment.doubleTapConfirmed();
+        return super.onDoubleTap(e);
     }
 }

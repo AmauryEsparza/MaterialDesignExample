@@ -17,16 +17,20 @@
 
 
     <TextView
+        android:id="@+id/textTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:id="@+id/textTitle" />
+        android:textSize="26sp"
+        android:transitionName="shared_title_text"/>
 
     <TextView
+        android:id="@+id/textDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:id="@+id/textDescription" />
+        android:textSize="16sp"
+        android:transitionName="shared_description_text"/>
 
     <TextView
         android:layout_width="match_parent"

@@ -5,5 +5,5 @@ package com.example.materialdesignexample.interfaces;
  */
 public interface IBaseTouchConfirmed {
     //Single tap confirmed
-    public void singleTapConfirmed();
+    public void doubleTapConfirmed();
 }

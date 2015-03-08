@@ -1,6 +1,7 @@
 package com.example.materialdesignexample.fragments;
 
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,7 +28,8 @@ import java.util.List;
 /**
  * Created by Amaury Esparza on 06/02/2015.
  */
-public class RepositoriesListFragment extends Fragment implements IBaseCallbackResponse<Repos>, RecyclerView.OnItemTouchListener, IBaseTouchConfirmed{
+public class RepositoriesListFragment extends Fragment implements IBaseCallbackResponse<Repos>,
+        RecyclerView.OnItemTouchListener, IBaseTouchConfirmed, View.OnClickListener{
 
     private Repos repos;
     private List<Repos> reposList;
@@ -72,7 +74,7 @@ public class RepositoriesListFragment extends Fragment implements IBaseCallbackR
         Log.d("RepositoriesListFragment", "responseCallback");
         if(reposList != null){
             this.reposList = reposList;
-            RecyclerViewRepoListAdapter aItems = new RecyclerViewRepoListAdapter(this.reposList);
+            RecyclerViewRepoListAdapter aItems = new RecyclerViewRepoListAdapter(this, this.reposList);
             recyclerView.setAdapter(aItems);
             //Item Decoration
             RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity().getApplicationContext());
@@ -100,10 +102,14 @@ public class RepositoriesListFragment extends Fragment implements IBaseCallbackR
 
     //When the GestureDetector class confirm was a singleTap
     @Override
-    public void singleTapConfirmed() {
+    public void doubleTapConfirmed() {
         //Activity callback with the sharedElements for the next activity
+        Log.d("RepositoriesListFragment", "doubleTap");
+    }
 
-        //------------Someway need to get the position on the element was clicked------------------
-        fragmentCommunicator.communicatorFromFragment(reposList.get(0));
+    @Override
+    public void onClick(View sharedView){
+        Log.d("RepositoriesListFragment", "onclick");
+        fragmentCommunicator.commonSharedElements(sharedView, reposList.get(0));
     }
 }
