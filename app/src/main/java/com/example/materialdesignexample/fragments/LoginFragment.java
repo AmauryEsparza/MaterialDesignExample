@@ -4,27 +4,26 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.materialdesignexample.R;
 import com.example.materialdesignexample.activities.RepositoriesListActivity;
 import com.example.materialdesignexample.controllers.LoginController;
 import com.example.materialdesignexample.interfaces.IBaseCallbackResponse;
-import com.example.materialdesignexample.interfaces.IBaseFragmentCommunicator;
-import com.example.materialdesignexample.models.User;
+import com.example.materialdesignexample.models.Authorization;
 
 import java.util.List;
 
 /**
  * Created by Amaury Esparza on 04/03/2015.
  */
-public class LoginFragment extends Fragment implements View.OnClickListener, IBaseCallbackResponse<User> {
+public class LoginFragment extends Fragment implements View.OnClickListener, IBaseCallbackResponse<Authorization> {
 
     Button loginButton;
     EditText usernameEdit;
@@ -48,7 +47,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener, IBa
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
         usernameEdit = (EditText) getActivity().findViewById(EDIT_USERNAME);
+        usernameEdit.requestFocus();
         passwordEdit = (EditText) getActivity().findViewById(EDIT_PASSWORD);
+        passwordEdit.requestFocus();
         loginButton = (Button) getActivity().findViewById(BUTTON_LOGIN);
         loginButton.setOnClickListener(this);
     }
@@ -56,20 +57,24 @@ public class LoginFragment extends Fragment implements View.OnClickListener, IBa
     @Override
     public void onClick(View v){
         //If the text field are diferent from null
-        if(usernameEdit.getText() != null & passwordEdit.getText() != null) {
+        if(!usernameEdit.getText().toString().equals("") & !passwordEdit.getText().toString().equals("")) {
             if (v.getId() == BUTTON_LOGIN) {
                 LoginController controller = new LoginController(this);
+                String concatedString = usernameEdit.getText() + ":" + passwordEdit.getText();
+                byte[] data = concatedString.getBytes();
+                String encodedString = Base64.encodeToString(data, Base64.DEFAULT);
                 //Here some parameter
-                controller.login();
+                controller.login(encodedString);
             }
         }
         else{
+            Toast.makeText(getActivity(), "Complete username and password field to continue", Toast.LENGTH_LONG).show();
             //The fields are required
         }
     }
 
     @Override
-    public void responseCallback(User user){
+    public void responseCallback(Authorization user){
         if(user != null) {
             Intent intent = new Intent(getActivity(), RepositoriesListActivity.class);
             startActivity(intent);
@@ -77,11 +82,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener, IBa
         else{
             Toast.makeText(getActivity(), "Server error, try again later", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     @Override
-    public void responseListCallback(List<User> listUsers){
+    public void responseListCallback(List<Authorization> listAuthorizations){
         //Doesn't use in this case
     }
 }

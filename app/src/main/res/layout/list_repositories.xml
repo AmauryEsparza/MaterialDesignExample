@@ -1,22 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/title_repo_text"
+        android:layout_alignStart="@id/image_view_list_repo"
         android:textSize="26sp"
         android:transitionName="shared_title_text"
-    />
+        android:layout_alignParentLeft="false" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/description_repo_text"
+        android:layout_below="@id/title_repo_text"
         android:textSize="16sp"
         android:transitionName="shared_description_text"
      />
+    <ImageView
+        android:id="@+id/image_view_list_repo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/title_repo_text"
+        android:layout_toEndOf="@+id/image_view_list_repo"
+        android:src="@drawable/ic_launcher"
+        android:contentDescription="Hola"/>
 
-</LinearLayout>
+</RelativeLayout>
