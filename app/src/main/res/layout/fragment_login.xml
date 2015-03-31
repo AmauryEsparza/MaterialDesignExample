@@ -9,23 +9,24 @@
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/buttonLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login"
-        android:id="@+id/buttonLogin"
         android:textColor="@color/navigation_color"
+        android:drawableEnd="@drawable/github_mark"
         android:layout_marginTop="61dp"
         android:layout_below="@+id/editPassword"
         android:textSize="18sp"
         android:layout_alignEnd="@+id/editPassword"
-        android:layout_alignStart="@+id/editPassword" />
+        android:layout_alignStart="@+id/editPassword"/>
 
     <EditText
+        android:id="@+id/editUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/editUsername"
         android:textColor="@color/navigation_color"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -35,11 +36,11 @@
     </EditText>
 
     <EditText
+        android:id="@+id/editPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editPassword"
         android:layout_below="@+id/editUsername"
         android:layout_alignStart="@+id/editUsername"
         android:layout_marginTop="49dp"

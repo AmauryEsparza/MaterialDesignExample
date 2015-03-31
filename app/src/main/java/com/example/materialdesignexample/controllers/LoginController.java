@@ -35,11 +35,11 @@ public class LoginController{
     }
 
     public void login(String encodedString){
-        String body = "{\"scopes\": [\"public_repo\"], " +
+        String body = "{\"scopes\": [\"repo\", \"public_repo\", \"notifications\"], " +
                 "\"client_id\": \"" + CLIENT_GITHUB_ID +
                 "\", \"client_secret\": \"" + CLIENT_GITHUB_SECRET +
                 "\", \"note\": \"public and private repo authorization\"}";
-        Log.d("LoginCOntroller", body);
+        Log.d("LoginController", body);
         try {
             TypedInput bodyJson = new TypedByteArray("application/json", body.getBytes("UTF-8"));
             apiService.loginAuthorization("Basic " + encodedString, bodyJson, new Callback<Authorization>() {

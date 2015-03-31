@@ -9,6 +9,8 @@
         android:id="@+id/title_repo_text"
         android:textSize="26sp"
         android:layout_toStartOf="@+id/image_view_list_repo"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="3dp"
         android:transitionName="shared_title_text"
         />
     <TextView
@@ -18,6 +20,7 @@
         android:layout_below="@id/title_repo_text"
         android:layout_toStartOf="@+id/image_view_list_repo"
         android:textSize="16sp"
+        android:layout_marginStart="6dp"
         android:transitionName="shared_description_text"
         />
     <ImageView
@@ -26,6 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:src="@drawable/ic_launcher"
+        android:layout_marginEnd="3dp"
+        android:layout_marginTop="3dp"
         android:contentDescription="Hola"/>
 
 

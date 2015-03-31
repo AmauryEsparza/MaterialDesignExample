@@ -3,6 +3,8 @@ package com.example.materialdesignexample.fragments;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -31,10 +33,17 @@ public class LoginFragment extends Fragment implements View.OnClickListener, IBa
     private final int BUTTON_LOGIN = R.id.buttonLogin;
     private final int EDIT_USERNAME = R.id.editUsername;
     private final int EDIT_PASSWORD = R.id.editPassword;
+    private static String token;
 
     @Override
     public void onAttach(Activity activity){
         super.onAttach(activity);
+        //token = getActivity().getApplicationContext().getSharedPreferences("MaterialGithubPreferences", 0).getString("token", null);
+        if(token != null){
+            Intent intent = new Intent(getActivity(), RepositoriesListActivity.class);
+            intent.putExtra("token", token);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -74,9 +83,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener, IBa
     }
 
     @Override
-    public void responseCallback(Authorization user){
-        if(user != null) {
+    public void responseCallback(Authorization oAuth){
+        if(oAuth != null) {
             Intent intent = new Intent(getActivity(), RepositoriesListActivity.class);
+            SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MaterialGithubPreferences", 0);
+            Editor editor = pref.edit();
+            editor.putString("token", oAuth.getToken());
+            editor.commit();
             startActivity(intent);
         }
         else{
