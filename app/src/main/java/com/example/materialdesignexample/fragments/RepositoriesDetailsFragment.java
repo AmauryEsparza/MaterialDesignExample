@@ -15,21 +15,28 @@ import com.example.materialdesignexample.models.Repos;
 /**
  * Created by Amaury Esparza on 15/02/2015.
  */
-public class RepositoriesDetailsFragment extends Fragment {
+public class RepositoriesDetailsFragment extends Fragment{
 
     private TextView textTitle;
     private TextView textDescription;
     private TextView textLanguage;
+    private TextView textCreatedAt;
     private Repos repo;
-    private String title, description;
+    private String title, description, language, created_at;
 
     @Override
     public void onAttach(Activity activity){
         //Get the extras from parent Activity
         Intent intent = activity.getIntent();
         repo = (Repos) intent.getSerializableExtra("repo");
-        title = intent.getStringExtra("title");
-        description= intent.getStringExtra("description");
+        //title = intent.getStringExtra("title");
+        //description= intent.getStringExtra("description");
+        title = repo.getName();
+        description = repo.getDescription();
+        language = repo.getLanguage();
+        created_at = repo.getCreated_at();
+
+
         super.onAttach(activity);
     }
 
@@ -45,10 +52,13 @@ public class RepositoriesDetailsFragment extends Fragment {
         textTitle = (TextView) getActivity().findViewById(R.id.textTitle);
         textDescription = (TextView) getActivity().findViewById(R.id.textDescription);
         textLanguage = (TextView) getActivity().findViewById(R.id.textLanguage);
+        textCreatedAt = (TextView) getActivity().findViewById(R.id.textCreatedAt);
         //textTitle.setText(repo.getName());
         //textDescription.setText(repo.getDescription());
         textTitle.setText(title);
         textDescription.setText(description);
+        textLanguage.setText(language);
+        textCreatedAt.setText(created_at);
 
         //The fragment communicator LOOKUP because im not sure it works
         //activityCommunicator.communicatorFromFragment(new Repos());

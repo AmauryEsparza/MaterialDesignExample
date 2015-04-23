@@ -38,7 +38,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, IBa
     @Override
     public void onAttach(Activity activity){
         super.onAttach(activity);
-        //token = getActivity().getApplicationContext().getSharedPreferences("MaterialGithubPreferences", 0).getString("token", null);
+        token = getActivity().getApplicationContext().getSharedPreferences("MaterialGithubPreferences", 0).getString("token", null);
         if(token != null){
             Intent intent = new Intent(getActivity(), RepositoriesListActivity.class);
             intent.putExtra("token", token);

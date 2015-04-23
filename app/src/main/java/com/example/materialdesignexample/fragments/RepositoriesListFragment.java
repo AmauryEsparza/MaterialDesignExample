@@ -20,6 +20,7 @@ import com.example.materialdesignexample.interfaces.IBaseFragmentCommunicator;
 import com.example.materialdesignexample.interfaces.IBaseTouchConfirmed;
 import com.example.materialdesignexample.models.Repos;
 import com.example.materialdesignexample.utils.DividerItemDecoration;
+import com.example.materialdesignexample.utils.RecyclerItemClickListener;
 import com.example.materialdesignexample.utils.RecyclerViewOnGestureListener;
 import com.example.materialdesignexample.utils.RecyclerViewRepoListAdapter;
 
@@ -29,7 +30,7 @@ import java.util.List;
  * Created by Amaury Esparza on 06/02/2015.
  */
 public class RepositoriesListFragment extends Fragment implements IBaseCallbackResponse<Repos>,
-        RecyclerView.OnItemTouchListener, IBaseTouchConfirmed, View.OnClickListener{
+        RecyclerView.OnItemTouchListener, IBaseTouchConfirmed{
 
     private Repos repos;
     private List<Repos> reposList;
@@ -44,6 +45,14 @@ public class RepositoriesListFragment extends Fragment implements IBaseCallbackR
         View v = inflater.inflate(R.layout.fragment_list_repositories, container, false);
         //Reference to the Recycles View
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_list_repositories);
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity().getApplicationContext(),
+                new RecyclerItemClickListener.OnItemClickListener(){
+                    @Override
+                    public void onItemClick(View view, int position){
+                        fragmentCommunicator.commonSharedElements(view, reposList.get(position));
+                    }
+                })
+        );
         return v;
     }
 
@@ -74,7 +83,16 @@ public class RepositoriesListFragment extends Fragment implements IBaseCallbackR
         Log.d("RepositoriesListFragment", "responseCallback");
         if(reposList != null){
             this.reposList = reposList;
-            RecyclerViewRepoListAdapter aItems = new RecyclerViewRepoListAdapter(this, this.reposList);
+            //Validating data
+            for(Repos repo : this.reposList){
+                if(repo.getDescription() == null || repo.getDescription().equals("")){
+                    repo.setDescription("No repo description available");
+                }
+                if(repo.getLanguage() == null || repo.getLanguage().equals("")){
+                    repo.setLanguage("Not defined");
+                }
+            }
+            RecyclerViewRepoListAdapter aItems = new RecyclerViewRepoListAdapter(this.reposList);
             recyclerView.setAdapter(aItems);
             //Item Decoration
             RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity().getApplicationContext());
@@ -105,11 +123,5 @@ public class RepositoriesListFragment extends Fragment implements IBaseCallbackR
     public void doubleTapConfirmed() {
         //Activity callback with the sharedElements for the next activity
         Log.d("RepositoriesListFragment", "doubleTap");
-    }
-
-    @Override
-    public void onClick(View sharedView){
-        Log.d("RepositoriesListFragment", "onclick");
-        fragmentCommunicator.commonSharedElements(sharedView, reposList.get(0));
     }
 }

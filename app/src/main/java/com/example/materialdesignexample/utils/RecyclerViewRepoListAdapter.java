@@ -17,8 +17,6 @@ import java.util.List;
  */
 public class RecyclerViewRepoListAdapter extends RecyclerView.Adapter<RecyclerViewRepoListAdapter.ListItemViewHolder>{
 
-    //Reference to the listener
-    private View.OnClickListener fragmentListener;
     //Holder class for reference the view components
     public final static class ListItemViewHolder extends RecyclerView.ViewHolder {
         TextView label;
@@ -32,10 +30,9 @@ public class RecyclerViewRepoListAdapter extends RecyclerView.Adapter<RecyclerVi
     }
 
     private List<Repos> reposList;
-    public RecyclerViewRepoListAdapter(View.OnClickListener fragmentListener, List<Repos> repoList){
+    public RecyclerViewRepoListAdapter(List<Repos> repoList){
         if (repoList != null){
             this.reposList = repoList;
-            this.fragmentListener = fragmentListener;
         }
     }
 
@@ -44,8 +41,6 @@ public class RecyclerViewRepoListAdapter extends RecyclerView.Adapter<RecyclerVi
     public ListItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //Inflate the corresponding layout
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_repositories, parent, false);
-        //OnClickListener
-        itemView.setOnClickListener(fragmentListener);
         //Here modify the view like margins, paddings, view size and layout parameters
         //return the ViewHolder
         return new ListItemViewHolder(itemView);
@@ -59,11 +54,7 @@ public class RecyclerViewRepoListAdapter extends RecyclerView.Adapter<RecyclerVi
         Repos repo = reposList.get(position);
         //Replace the contents of the view with that element
         holder.label.setText(repo.getName());
-        if(repo.getDescription().equals("")){
-            holder.description.setText("No repo description available");
-        }else{
-            holder.description.setText(repo.getDescription());
-        }
+        holder.description.setText(repo.getDescription());
     }
 
     //Invoked by the LayoutManager
