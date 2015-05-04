@@ -1,15 +1,15 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainActivity">
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--When want create the action bar using the support library
+        we need to import the xmlns:yourapp="http://schemas.android.com/apk/res-auto"-->
+    <item
+        android:id="@+id/action_search"
+        android:title="@string/action_search"
+        android:icon="@drawable/ic_action_search"
+        android:showAsAction="ifRoom"/>
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="100"
-        app:showAsAction="never"
+        android:showAsAction="never"
         />
-    <item
-        android:id="@+id/action_search"
-        android:title="drawer"
-        android:icon="@drawable/ic_drawer"
-        app:showAsAction="ifRoom"/>
 </menu>

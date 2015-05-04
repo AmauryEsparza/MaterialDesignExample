@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar">
+    <style name="MyMaterialTheme" parent="android:Theme.Material.Light.DarkActionBar">
         <!-- Enable window content transitions -->
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentTransitions">true</item>
 
         <!-- Main theme colors -->
-        <!--   your app branding color for the app bar -->
-        <item name="android:colorPrimary">@color/navigation_color</item>
-        <!--   darker variant for the status bar and contextual app bars -->
-        <item name="android:colorPrimaryDark">@color/status_color</item>
-        <!--   Navigation Bar color -->
+        <!--   your app branding color for the app action bar -->
+        <item name="android:colorPrimary">@color/action_bar_color</item>
+        <item name="android:textColorPrimary">@color/action_bar_text_color</item>
+        <!--   Navigation Bar color (butt)-->
         <item name="android:navigationBarColor">@color/navigation_bar_color</item>
-        <!--   status bar text color -->
-        <item name="android:textColorPrimary">@color/text_navigation_color</item>
+
+
     </style>
 </resources>

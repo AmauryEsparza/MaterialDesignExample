@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="navigation_color">#232323</color>
-    <color name="text_navigation_color">#E0F7FA</color>
+    <color name="action_bar_color">#232323</color>
+    <color name="action_bar_text_color">#E0F7FA</color>
     <color name="status_color">#000000</color>
     <color name="navigation_bar_color">#000000</color>
     <color name="background_color">#FFFFFF</color>

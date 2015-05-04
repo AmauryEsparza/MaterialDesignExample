@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,22 +27,19 @@ public class RepositoriesDetailsFragment extends Fragment{
 
     @Override
     public void onAttach(Activity activity){
-        //Get the extras from parent Activity
-        Intent intent = activity.getIntent();
-        repo = (Repos) intent.getSerializableExtra("repo");
-        //title = intent.getStringExtra("title");
-        //description= intent.getStringExtra("description");
-        title = repo.getName();
-        description = repo.getDescription();
-        language = repo.getLanguage();
-        created_at = repo.getCreated_at();
-
-
         super.onAttach(activity);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        setSharedElementEnterTransition(TransitionInflater.from(getActivity()).inflateTransition(R.transition.change_item_transform));
+
+        //retrieving the serializable object
+        Repos repo = (Repos) getArguments().getSerializable("repo");
+        title = repo.getName();
+        description = repo.getDescription();
+        language = repo.getLanguage();
+        created_at = repo.getCreated_at();
         //Inflate the layout with the RecyclerView
         return inflater.inflate(R.layout.fragment_repository_details, container, false);
     }

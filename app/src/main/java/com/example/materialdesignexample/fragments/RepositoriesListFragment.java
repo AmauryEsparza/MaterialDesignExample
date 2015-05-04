@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -41,6 +42,9 @@ public class RepositoriesListFragment extends Fragment implements IBaseCallbackR
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        setSharedElementReturnTransition(TransitionInflater.from(getActivity()).inflateTransition(R.transition.change_item_transform));
+        //setExitTransition(TransitionInflater.from(getActivity()).inflateTransition(R.transition.change_item_transform));
+        //setExitTransition(TransitionInflater.from(getActivity()).inflateTransition(android.R.transition.explode));
         //Inflate the layout with the RecyclerView
         View v = inflater.inflate(R.layout.fragment_list_repositories, container, false);
         //Reference to the Recycles View

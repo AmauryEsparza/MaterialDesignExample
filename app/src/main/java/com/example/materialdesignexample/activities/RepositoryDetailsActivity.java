@@ -18,11 +18,11 @@ public class RepositoryDetailsActivity extends Activity implements IBaseFragment
 
     @Override
     public void onCreate(Bundle savedInstanceState){
-        getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
-        getWindow().setAllowEnterTransitionOverlap(true);
+        //getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
+        //getWindow().setAllowEnterTransitionOverlap(true);
         //getWindow().setEnterTransition(new ChangeBounds());
-        getWindow().setExitTransition(new ChangeBounds());
-        getWindow().setSharedElementEnterTransition(new ChangeBounds());
+        //getWindow().setExitTransition(new ChangeBounds());
+        //getWindow().setSharedElementEnterTransition(new ChangeBounds());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repository_details);
 
